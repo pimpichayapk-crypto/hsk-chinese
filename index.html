@@ -1221,7 +1221,7 @@ function openWriter(hz){
   document.getElementById('mZh').textContent = w.hanzi;
   document.getElementById('mPy').innerHTML = pyHtml(w.pinyin);
   document.getElementById('mTh').textContent = w.th;
-  document.getElementById('mEn').textContent = w.en + ' · แตะปุ่มเพื่อดูจังหวะขีด';
+  document.getElementById('mEn').textContent = w.en + ' · กด ▶ ดูวิธีเขียน เพื่อดูการลากเส้นทีละขีด';
   const wb = $('#writerBox');
   wb.style.background = 'var(--paper)';
   wb.innerHTML = '';
@@ -1240,14 +1240,18 @@ function openWriter(hz){
       d.style.height = '220px'; d.style.width = '100%';
       d.style.borderBottom = '1px dashed var(--line)';
       wb.appendChild(d);
-      writers.push(HanziWriter.create(d, ch, {
-        width: (wb.clientWidth-16) < 300 ? (wb.clientWidth-16) : 300, height: 220, padding: 8,
-        showCharacter: false, showOutline: true, showHintAfterMisses: 1,
-        strokeColor: '#B0342E', outlineColor: '#C9B088', hintColor: '#C9A227',
-        delayBetweenStrokes: 260, drawingFadeDuration: 120
-      }));
+      try{
+        writers.push(HanziWriter.create(d, ch, {
+          width: (wb.clientWidth-16) < 300 ? (wb.clientWidth-16) : 300, height: 220, padding: 8,
+          showCharacter: false, showOutline: true, showHintAfterMisses: 1,
+          strokeColor: '#B0342E', outlineColor: '#C9B088', hintColor: '#C9A227',
+          delayBetweenStrokes: 260, drawingFadeDuration: 120
+        }));
+      }catch(e){
+        d.innerHTML = '<div style="padding:60px 10px;text-align:center;color:var(--muted)">ไม่มีข้อมูลขีดของอักษรนี้</div>';
+      }
     });
-    writers.forEach(wn => wn.showCharacter());
+    try{ writers.forEach(wn => wn.showCharacter()); }catch(e){}
   } else {
     wb.innerHTML = '<div style="padding:60px 10px; text-align:center; color:var(--muted)">โหลดโมดูลวาดอักษรไม่สำเร็จ (ต้องต่ออินเทอร์เน็ต) — ลองรีเฟรชหน้า</div>';
   }
@@ -1259,16 +1263,26 @@ function closeModal(){
 }
 function $(id){ return document.getElementById(String(id).replace(/^#/,'')); }
 $('wAnimate').addEventListener('click', ()=>{
-  if(window.HanziWriter){ (writers||[]).forEach(wn => wn.showCharacter()); $('wInfo').textContent=''; }
+  if(window.HanziWriter){
+    $('wInfo').textContent = 'กำลังวาดตามลำดับขีด…';
+    (writers||[]).forEach(wn => {
+      try{ wn.cancelQuiz(); }catch(e){}
+      try{ wn.showOutline(); }catch(e){}
+      try{ wn.animateCharacter(); }catch(e){}
+    });
+  }
 });
 $('wStep').addEventListener('click', ()=>{
   if(window.HanziWriter){
     $('wInfo').textContent = 'แตะจังหวะถัดไปที่ถูกต้องตามลำดับ — ตอบผิดจะเฉลยให้';
-    (writers||[]).forEach(wn => wn.quiz());
+    (writers||[]).forEach(wn => { try{ wn.quiz(); }catch(e){} });
   }
 });
 $('wClear').addEventListener('click', ()=>{
-  if(window.HanziWriter) (writers||[]).forEach(wn => wn.showCharacter());
+  if(window.HanziWriter){
+    $('wInfo').textContent = '';
+    (writers||[]).forEach(wn => { try{ wn.cancelQuiz(); }catch(e){} try{ wn.showOutline(); }catch(e){} });
+  }
 });
 document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==='modal') closeModal(); });
 

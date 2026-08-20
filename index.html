@@ -573,6 +573,7 @@ footer{margin-top:44px; padding:20px 0 6px; border-top:1px solid var(--line);
 
 <footer>
   สื่อการเรียนรู้ภาษาจีน HSK 1 สำหรับผู้เริ่มต้น · ข้อมูลจากคำศัพท์ HSK อย่างเป็นทางการ · ฟรี และอัปเดตได้
+  <div style="margin-top:6px; opacity:.75; font-size:12px" id="verTag">เวอร์ชัน 2 · แก้ปุ่ม "ดูวิธีเขียน" ให้วาดเส้นทีละขีดแล้ว</div>
 </footer>
 
 <!-- ============ BOTTOM NAV ============ -->
@@ -1221,7 +1222,7 @@ function openWriter(hz){
   document.getElementById('mZh').textContent = w.hanzi;
   document.getElementById('mPy').innerHTML = pyHtml(w.pinyin);
   document.getElementById('mTh').textContent = w.th;
-  document.getElementById('mEn').textContent = w.en + ' · กด ▶ ดูวิธีเขียน เพื่อดูการลากเส้นทีละขีด';
+  document.getElementById('mEn').textContent = w.en + ' · กด ▶ เพื่อดูเส้นซ้ำ · ✍️ ฝึกทีละขีด';
   const wb = $('#writerBox');
   wb.style.background = 'var(--paper)';
   wb.innerHTML = '';
@@ -1251,7 +1252,9 @@ function openWriter(hz){
         d.innerHTML = '<div style="padding:60px 10px;text-align:center;color:var(--muted)">ไม่มีข้อมูลขีดของอักษรนี้</div>';
       }
     });
-    try{ writers.forEach(wn => wn.showCharacter()); }catch(e){}
+    try{ writers.forEach(wn => wn.showOutline()); }catch(e){}
+    document.getElementById('wInfo').textContent = 'กำลังวาดตามลำดับขีด…';
+    try{ writers.forEach(wn => { try{ wn.cancelQuiz(); }catch(e){} try{ wn.animateCharacter(); }catch(e){} }); }catch(e){}
   } else {
     wb.innerHTML = '<div style="padding:60px 10px; text-align:center; color:var(--muted)">โหลดโมดูลวาดอักษรไม่สำเร็จ (ต้องต่ออินเทอร์เน็ต) — ลองรีเฟรชหน้า</div>';
   }

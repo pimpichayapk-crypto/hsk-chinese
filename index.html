@@ -573,7 +573,7 @@ footer{margin-top:44px; padding:20px 0 6px; border-top:1px solid var(--line);
 
 <footer>
   สื่อการเรียนรู้ภาษาจีน HSK 1 สำหรับผู้เริ่มต้น · ข้อมูลจากคำศัพท์ HSK อย่างเป็นทางการ · ฟรี และอัปเดตได้
-  <div style="margin-top:6px; opacity:.75; font-size:12px" id="verTag">เวอร์ชัน 3 · ฝังตัววาดเส้นไว้ในเว็บแล้ว ใช้ได้ทุกที่แม้ CDN โดนบล็อก</div>
+  <div style="margin-top:6px; opacity:.75; font-size:12px" id="verTag">เวอร์ชัน 4 · แก้เสียงพินอิน พยัญชนะต้น/สระ ออกเสียงถูกต้องแล้ว</div>
 </footer>
 
 <!-- ============ BOTTOM NAV ============ -->
@@ -929,16 +929,23 @@ const GUIDE_PLAN = [
 ];
 const TONE_NAMES = {1:"เสียงสามัญ", 2:"เสียงจัตวา", 3:"เสียงตรี", 4:"เสียงโท", 0:"เสียงเบา"};
 const INITIALS = [
-  ["b","ba"],["p","pa"],["m","ma"],["f","fa"],["d","da"],["t","ta"],["n","na"],["l","la"],
-  ["g","ga"],["k","ka"],["h","ha"],["j","ji"],["q","qi"],["x","xi"],["zh","zhi"],["ch","chi"],
-  ["sh","shi"],["r","ri"],["z","zi"],["c","ci"],["s","si"],["y","ya"],["w","wa"]
+  ["b","bo","波"],["p","po","坡"],["m","mo","摸"],["f","fo","佛"],
+  ["d","de","德"],["t","te","特"],["n","ne","呢"],["l","le","勒"],
+  ["g","ge","哥"],["k","ke","科"],["h","he","喝"],["j","ji","鸡"],
+  ["q","qi","七"],["x","xi","西"],["zh","zhi","知"],["ch","chi","吃"],
+  ["sh","shi","诗"],["r","ri","日"],["z","zi","资"],["c","ci","词"],
+  ["s","si","思"],["y","yi","衣"],["w","wu","乌"]
 ];
 const FINALS = [
-  ["a","a"],["o","o"],["e","e"],["i","i"],["u","u"],["ü","ü"],["ai","ai"],["ei","ei"],
-  ["ao","ao"],["ou","ou"],["an","an"],["en","en"],["ang","ang"],["eng","eng"],["ong","ong"],["er","er"],
-  ["ia","ia"],["ie","ie"],["iao","iao"],["iu","iu"],["ian","ian"],["in","in"],["iang","iang"],["ing","ing"],
-  ["iong","iong"],["ua","ua"],["uo","uo"],["uai","uai"],["ui","ui"],["uan","uan"],["un","un"],["uang","uang"],
-  ["üe","üe"],["üan","üan"],["ün","ün"]
+  ["a","a","啊"],["o","o","喔"],["e","e","鹅"],["i","yi","衣"],
+  ["u","wu","乌"],["ü","yu","迂"],["ai","ai","哀"],["ei","ei","诶"],
+  ["ao","ao","凹"],["ou","ou","欧"],["an","an","安"],["en","en","恩"],
+  ["ang","ang","肮"],["eng","eng","鞥"],["ong","ong","嗡"],["er","er","儿"],
+  ["ia","ya","呀"],["ie","ye","椰"],["iao","yao","腰"],["iu","you","优"],
+  ["ian","yan","烟"],["in","yin","音"],["iang","yang","央"],["ing","ying","英"],
+  ["iong","yong","雍"],["ua","wa","蛙"],["uo","wo","窝"],["uai","wai","歪"],
+  ["ui","wei","威"],["uan","wan","弯"],["un","wen","温"],["uang","wang","汪"],
+  ["üe","yue","约"],["üan","yuan","冤"],["ün","yun","晕"]
 ];
 const ICONS = {
   sound:'<svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
@@ -1710,10 +1717,10 @@ function renderPinyin(){
     </div>`).join('');
   dd.querySelectorAll('[data-play]').forEach(x=>x.addEventListener('click',()=>playAudio(x.dataset.play)));
   const ig = document.getElementById('initialsGrid');
-  ig.innerHTML = INITIALS.map(i=>`<div class="py-cell" data-play="${i[1]}"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('');
+  ig.innerHTML = INITIALS.map(i=>`<div class="py-cell" data-play="${i[2]}" title="${i[2]} (${i[0]}${i[1]})"><b>${i[0]}</b><span>${i[1]}</span></div>`).join('');
   ig.querySelectorAll('[data-play]').forEach(x=>x.addEventListener('click',()=>playAudio(x.dataset.play)));
   const fg = document.getElementById('finalsGrid');
-  fg.innerHTML = FINALS.map(f=>`<div class="py-cell" data-play="${f[1]}"><b>${f[0]}</b><span>${f[1]}</span></div>`).join('');
+  fg.innerHTML = FINALS.map(f=>`<div class="py-cell" data-play="${f[2]}" title="${f[2]} (${f[0]}${f[1]})"><b>${f[0]}</b><span>${f[1]}</span></div>`).join('');
   fg.querySelectorAll('[data-play]').forEach(x=>x.addEventListener('click',()=>playAudio(x.dataset.play)));
 }
 

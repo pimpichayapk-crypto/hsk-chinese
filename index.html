@@ -408,6 +408,10 @@ footer{margin-top:44px; padding:20px 0 6px; border-top:1px solid var(--line);
       <div class="num">📅<small>PLAN</small></div>
       <div><h3>คู่มือเรียนเอง 4 สัปดาห์</h3><p>แผนรายวัน + เทคนิคเรียนด้วยตัวเอง เรียนคนเดียวก็เข้าใจได้ ใช้ได้จริง</p></div>
     </div>
+    <div class="lcard" style="cursor:pointer" onclick="goTo('games')">
+      <div class="num">🎮<small>GAMES</small></div>
+      <div><h3>เล่นเกมฝึกภาษา</h3><p>จับคู่การ์ด ทายวรรณยุกต์ ทายคำเร็ว — สนุก ๆ แต่จำศัพท์ได้จริง</p></div>
+    </div>
   </div>
 </section>
 
@@ -569,11 +573,53 @@ footer{margin-top:44px; padding:20px 0 6px; border-top:1px solid var(--line);
   </div>
 </section>
 
+<!-- ============ GAMES ============ -->
+<section id="games">
+  <div class="sec-head"><div>
+    <div class="tag">คลายเครียด</div>
+    <h2>เล่นเกมฝึกภาษา</h2>
+    <p>เกมจับคู่ + ทายวรรณยุกต์ + ทายคำเร็ว — เล่นเพลิน ๆ แต่จำศัพท์ได้จริง เลือกระดับศัพท์ด้านล่างก่อนเริ่ม</p>
+  </div></div>
+  <div class="chips" id="gameScopeChips" style="margin-bottom:14px"></div>
+
+  <div class="lessons">
+    <div class="lcard">
+      <div class="num">🀄<small>MATCH</small></div>
+      <div style="flex:1; min-width:0">
+        <h3>เกมจับคู่การ์ด</h3><p>พลิกหาคู่ 汉字 ↔ ความหมายไทย จำทั้งหน้าตาและความหมายได้ในเกมเดียว</p>
+        <div class="meta">8 คู่ · พลิกหาให้ครบ · ฟังเสียงทุกคู่ที่เจอ</div>
+        <button class="btn gold small" style="margin-top:8px" onclick="startMemory(gameScope)">🎮 เริ่มเล่น</button>
+      </div>
+    </div>
+    <div class="lcard">
+      <div class="num">🎵<small>TONES</small></div>
+      <div style="flex:1; min-width:0">
+        <h3>เกมทายเสียงวรรณยุกต์</h3><p>ฟังเสียงคำจีนแล้วทายวรรณยุกต์ ①–⑤ ฝึกหูให้แยกเสียงได้แม่นขึ้น</p>
+        <div class="meta">10 ข้อ · ฟังอัตโนมัติ · เหมาะกับที่เพิ่งเรียนพินจีน</div>
+        <button class="btn gold small" style="margin-top:8px" onclick="startTones(gameScope)">🎮 เริ่มเล่น</button>
+      </div>
+    </div>
+    <div class="lcard">
+      <div class="num">⚡<small>SPEED</small></div>
+      <div style="flex:1; min-width:0">
+        <h3>เกมทายคำเร็ว 60 วิ</h3><p>เห็นตัวจีน ทายความหมายให้เร็วที่สุดใน 60 วินาที ทำสถิติตัวเองให้สูงขึ้นเรื่อย ๆ</p>
+        <div class="meta">จับเวลา 60 วิ · ลุ้นสถิติสูงสุด · เหมาะทบทวนก่อนสอบ</div>
+        <button class="btn gold small" style="margin-top:8px" onclick="startSpeed(gameScope)">🎮 เริ่มเล่น</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--paper2); border:1px solid var(--line); border-radius:14px; padding:16px; margin-top:20px">
+    <h3>💡 เกมช่วยจำยังไง?</h3>
+    <p class="small" style="color:#4A4236">จับคู่การ์ดช่วยจำหน้าตา ↔ ความหมาย · ทายวรรณยุกต์ฝึกหูให้แยกเสียง · ทายคำเร็วบังคับให้สมองเรียกศัพท์ออกไวขึ้น — ลองเล่น 5 นาทีก่อนนอนทุกคืน เรียนจีนมันส์ขึ้นแน่นอน</p>
+  </div>
+</section>
+
 </main>
 
 <footer>
   สื่อการเรียนรู้ภาษาจีน HSK 1 สำหรับผู้เริ่มต้น · ข้อมูลจากคำศัพท์ HSK อย่างเป็นทางการ · ฟรี และอัปเดตได้
-  <div style="margin-top:6px; opacity:.75; font-size:12px" id="verTag">เวอร์ชัน 4 · แก้เสียงพินอิน พยัญชนะต้น/สระ ออกเสียงถูกต้องแล้ว</div>
+  <div style="margin-top:6px; opacity:.75; font-size:12px" id="verTag">เวอร์ชัน 5 · เพิ่มเกมฝึกภาษา: จับคู่การ์ด · ทายวรรณยุกต์ · ทายคำเร็ว 60 วิ</div>
 </footer>
 
 <!-- ============ BOTTOM NAV ============ -->
@@ -1000,6 +1046,7 @@ function goTo(id){
   if(id==='daily'){ renderDaily(); randomDailyPhrase(); }
   if(id==='grammar') renderGrammar();
   if(id==='guide') renderGuide();
+  if(id==='games') renderGames();
 }
 
 /* ================= TONE HTML ================= */
@@ -1724,6 +1771,226 @@ function renderPinyin(){
   fg.querySelectorAll('[data-play]').forEach(x=>x.addEventListener('click',()=>playAudio(x.dataset.play)));
 }
 
+/* ================= GAMES ================= */
+let gameScope = 'all';
+let gameTimer = null;
+const TONE_LABELS = {1:'เสียงสามัญ', 2:'เสียงจัตวา', 3:'เสียงตรี', 4:'เสียงโท', 0:'เสียงเบา'};
+const TONE_NUMS = {'ā':1,'á':2,'ǎ':3,'à':4,'ē':1,'é':2,'ě':3,'è':4,'ī':1,'í':2,'ǐ':3,'ì':4,'ō':1,'ó':2,'ǒ':3,'ò':4,'ū':1,'ú':2,'ǔ':3,'ù':4,'ǖ':1,'ǘ':2,'ǚ':3,'ǜ':4,
+  'a':0,'e':0,'i':0,'o':0,'u':0,'ü':0};
+const TONE_PLAIN = {'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ù':'u','ǖ':'ü','ǘ':'ü','ǚ':'ü','ǜ':'ü'};
+function shuffleArr(a){ return a.map(x=>[Math.random(),x]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]); }
+function gameScopeWords(scope){ return scope==='all' ? WORDS.slice() : WORDS.filter(w=>w.lv===+scope); }
+function plainPinyin(py){ return [...py].map(c=>TONE_PLAIN[c]||c).join(''); }
+function pinyinTone(py){ for(const c of py){ if(c in TONE_NUMS) return TONE_NUMS[c]; } return 0; }
+
+function renderGames(){
+  const sc = document.getElementById('gameScopeChips');
+  if(!sc) return;
+  sc.innerHTML = '<span class="chip '+(gameScope==='all'?'on':'')+'" data-gscope="all">ทุกระดับ</span>' +
+    [1,2,3,4,5,6].map(n=>`<span class="chip ${gameScope===''+n?'on':''}" data-gscope="${n}">HSK ${n}</span>`).join('');
+  sc.querySelectorAll('[data-gscope]').forEach(c=>c.addEventListener('click',()=>{ gameScope = c.dataset.gscope; renderGames(); }));
+}
+function openGameLayer(html){
+  let L = document.getElementById('gameLayer');
+  if(!L){ const d=document.createElement('div'); d.id='gameLayer'; document.body.appendChild(d); }
+  const l = document.getElementById('gameLayer');
+  l.innerHTML = html; l.classList.add('show'); return l;
+}
+function gameFrame(title, body){
+  return `<div class="game-box">
+    <div class="game-head"><div>${title}</div>
+      <button class="modal-x" onclick="closeGameLayer()" aria-label="ปิด">✕</button></div>
+    ${body}
+  </div>`;
+}
+function closeGameLayer(){
+  if(gameTimer){ clearInterval(gameTimer); gameTimer = null; }
+  if(spState && spState.timerId){ clearInterval(spState.timerId); spState.timerId = null; }
+  toneState = null;
+  const L = document.getElementById('gameLayer'); if(L) L.classList.remove('show');
+}
+
+/* ---------- เกมจับคู่การ์ด ---------- */
+function startMemory(scope){
+  const pool = gameScopeWords(scope);
+  const picked = []; const seenTh = new Set();
+  for(const w of shuffleArr(pool)){
+    if(picked.length>=8) break;
+    if(seenTh.has(w.th)) continue;
+    seenTh.add(w.th); picked.push(w);
+  }
+  if(picked.length<3){ openGameLayer(gameFrame('🀄 เกมจับคู่การ์ด','<div class="small muted" style="padding:10px">คำศัพท์ในระดับนี้ไม่พอเล่น ลองเปลี่ยนระดับก่อน</div>')); return; }
+  const cards = shuffleArr(picked.flatMap((w,i)=>[{i,w,kind:'zh'},{i,w,kind:'th'}]));
+  let open = [], matched = 0, moves = 0, t0 = 0, lock = false;
+  const el = openGameLayer(gameFrame('🀄 เกมจับคู่การ์ด', `
+    <div class="mem-top"><span id="memMoves">0 ครั้ง</span><span id="memTime">0 วิ</span><span>เจอแล้ว <b id="memMatched">0</b>/${picked.length}</span></div>
+    <div class="mem-grid">
+      ${cards.map((c,k)=>`<button class="mem-card" data-k="${k}" data-p="${c.i}" data-kind="${c.kind}">
+        <span class="mem-back">🀄</span>
+        <span class="mem-front">
+          ${c.kind==='zh' ? `<b class="serif">${c.w.hanzi}</b><small>${c.w.pinyin}</small>` : `<b>${c.w.th}</b>`}
+        </span>
+      </button>`).join('')}
+    </div>`));
+  const grid = el.querySelector('.mem-grid');
+  grid.addEventListener('click', e=>{
+    const btn = e.target.closest('.mem-card'); if(!btn || lock) return;
+    if(btn.classList.contains('ok') || btn.classList.contains('open')) return;
+    btn.classList.add('open');
+    if(!t0){ t0 = Date.now(); gameTimer = setInterval(()=>{ const s=Math.floor((Date.now()-t0)/1000); const t=el.querySelector('#memTime'); if(t) t.textContent = s+' วิ'; }, 500); }
+    open.push(btn);
+    if(open.length===2){
+      moves++; const m=el.querySelector('#memMoves'); if(m) m.textContent = moves+' ครั้ง';
+      const [a,b] = open;
+      if(a.dataset.p===b.dataset.p){
+        a.classList.add('ok'); b.classList.add('ok'); a.classList.remove('open'); b.classList.remove('open');
+        matched++; const mm=el.querySelector('#memMatched'); if(mm) mm.textContent = matched;
+        try{ playAudio(cards[+a.dataset.k].w.hanzi); }catch(e){}
+        open = [];
+        if(matched===picked.length){
+          if(gameTimer){ clearInterval(gameTimer); gameTimer = null; }
+          const secs = Math.max(1, Math.round((Date.now()-t0)/1000));
+          setTimeout(()=>{ el.innerHTML = gameFrame('🎉 ครบทุกคู่แล้ว!', `
+            <div class="game-win">
+              <div class="serif" style="font-size:52px; line-height:1">太棒了！</div>
+              <p class="small muted">เจอครบ ${picked.length} คู่ · <b>${secs} วินาที</b> · พลิกทั้งหมด <b>${moves} ครั้ง</b></p>
+              <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:14px">
+                <button class="btn gold" onclick="startMemory('${scope}')">🔁 เล่นใหม่</button>
+                <button class="btn ghost" onclick="closeGameLayer()">กลับ</button>
+              </div>
+            </div>`); }, 550);
+        }
+      } else {
+        lock = true;
+        setTimeout(()=>{ a.classList.remove('open'); b.classList.remove('open'); open=[]; lock=false; }, 850);
+      }
+    }
+  });
+}
+
+/* ---------- เกมทายเสียงวรรณยุกต์ ---------- */
+let toneState = null;
+function startTones(scope){
+  const pool = gameScopeWords(scope).filter(w=>w.hanzi.length===1 && !/\s/.test(w.pinyin));
+  if(pool.length<5){ openGameLayer(gameFrame('🎵 เกมทายเสียงวรรณยุกต์','<div class="small muted" style="padding:10px">ระดับนี้มีคำตัวเดียวไม่พอเล่น เปลี่ยนระดับก่อน</div>')); return; }
+  toneState = { rounds: shuffleArr(pool).slice(0,10), idx:0, score:0, busy:false, scope };
+  toneRenderRound();
+}
+function toneRenderRound(){
+  const st = toneState; const w = st.rounds[st.idx]; const ans = pinyinTone(w.pinyin);
+  openGameLayer(gameFrame('🎵 เกมทายเสียงวรรณยุกต์', `
+    <div class="tone-top"><span>ข้อ ${st.idx+1}/${st.rounds.length}</span><span>คะแนน <b id="toneScore">${st.score}</b></span></div>
+    <div class="tone-card" data-ans="${ans}">
+      <div class="serif" style="font-size:64px; line-height:1.1">${w.hanzi}</div>
+      <div style="font-weight:700; margin:4px 0">${plainPinyin(w.pinyin)}</div>
+      <div class="small muted">${w.th}</div>
+      <button class="btn small" style="margin-top:8px" onclick="playAudio('${w.hanzi}')">🔊 ฟังอีกครั้ง</button>
+    </div>
+    <div class="tone-answers">
+      ${[1,2,3,4,0].map(t=>`<button class="tone-btn" data-t="${t}" onclick="tonePick(${t})">${t===0?'⑤':'①②③④'[t-1]} ${TONE_LABELS[t]}</button>`).join('')}
+    </div>
+    <div class="small muted" style="text-align:center; margin-top:8px; min-height:22px" id="toneInfo"></div>`));
+  try{ playAudio(w.hanzi); }catch(e){}
+}
+function tonePick(t){
+  const st = toneState; if(!st || st.busy) return;
+  const card = document.querySelector('.tone-card'); if(!card) return;
+  const ans = +card.dataset.ans;
+  st.busy = true;
+  const info = document.getElementById('toneInfo');
+  if(t===ans){
+    st.score++; const s=document.getElementById('toneScore'); if(s) s.textContent = st.score;
+    if(info) info.innerHTML = '<span style="color:#2e7d32; font-weight:800">✓ ถูกต้อง! คือ '+TONE_LABELS[ans]+'</span>';
+  } else if(info) info.innerHTML = '<span style="color:#B0342E; font-weight:800">✗ ผิด — ที่ถูกคือ '+TONE_LABELS[ans]+'</span>';
+  document.querySelectorAll('.tone-btn').forEach(b=>{ b.disabled=true; if(+b.dataset.t===ans) b.classList.add('right'); if(+b.dataset.t===t && t!==ans) b.classList.add('wrong'); });
+  setTimeout(()=>{
+    if(!toneState || toneState!==st) return;
+    st.idx++;
+    if(st.idx>=st.rounds.length){
+      const sc = st.score, sc2 = st.scope;
+      openGameLayer(gameFrame('🎯 จบเกมแล้ว!', `
+        <div class="game-win">
+          <div class="serif" style="font-size:52px; line-height:1">${sc>=8?'太棒了！':sc>=5?'不错！':'加油！'}</div>
+          <p class="small muted">ได้คะแนน <b>${sc}/10</b> · ${sc>=8?'หูแม่นมาก ฟังวรรณยุกต์ได้ดีแล้ว':sc>=5?'ดีขึ้นเรื่อย ๆ ลองเล่นซ้ำอีกหน่อย':'ไม่เป็นไร ฟังซ้ำแล้วนึกภาพเสียง ①–⑤ ทุกครั้ง'}</p>
+          <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:14px">
+            <button class="btn gold" onclick="startTones('${sc2}')">🔁 เล่นใหม่</button>
+            <button class="btn ghost" onclick="closeGameLayer()">กลับ</button>
+          </div>
+        </div>`));
+      toneState = null;
+    } else { st.busy = false; toneRenderRound(); }
+  }, 1150);
+}
+
+/* ---------- เกมทายคำเร็ว 60 วิ ---------- */
+let spState = null;
+function startSpeed(scope){
+  const pool = gameScopeWords(scope);
+  if(pool.length<4){ openGameLayer(gameFrame('⚡ เกมทายคำเร็ว','<div class="small muted" style="padding:10px">ศัพท์ระดับนี้ไม่พอเล่น</div>')); return; }
+  spState = { pool, time:60, score:0, timerId:null, busy:false, scope };
+  speedNext();
+  spState.timerId = setInterval(()=>{
+    const st = spState; if(!st) return;
+    st.time--;
+    const el = document.getElementById('spTime');
+    if(el){ el.textContent = st.time; el.style.color = st.time<=10 ? '#B0342E' : ''; }
+    if(st.time<=0){
+      clearInterval(st.timerId); st.timerId = null;
+      const best = Math.max(st.score, +(localStorage.getItem('hsk_speed_best')||0));
+      localStorage.setItem('hsk_speed_best', best);
+      openGameLayer(gameFrame('⏱️ เวลาหมด!', `
+        <div class="game-win">
+          <div class="serif" style="font-size:52px; line-height:1">${st.score>=15?'太棒了！':st.score>=8?'不错！':'加油！'}</div>
+          <p class="small muted">ตอบถูก <b>${st.score} ข้อ</b> ใน 60 วินาที · สถิติสูงสุด <b>${best}</b></p>
+          <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:14px">
+            <button class="btn gold" onclick="startSpeed('${st.scope}')">🔁 เล่นใหม่</button>
+            <button class="btn ghost" onclick="closeGameLayer()">กลับ</button>
+          </div>
+        </div>`));
+      spState = null;
+    }
+  }, 1000);
+}
+function speedNext(){
+  const st = spState; if(!st) return;
+  st.busy = false;
+  const w = st.pool[Math.floor(Math.random()*st.pool.length)];
+  const wrongs = []; const used = new Set([w.th]);
+  for(let i=0;i<120 && wrongs.length<3;i++){
+    const o = st.pool[Math.floor(Math.random()*st.pool.length)];
+    if(o.hanzi===w.hanzi || used.has(o.th)) continue;
+    used.add(o.th); wrongs.push(o);
+  }
+  const opts = shuffleArr([w, ...wrongs]);
+  openGameLayer(gameFrame('⚡ เกมทายคำเร็ว 60 วิ', `
+    <div class="speed-top">
+      <span>⏱ <b id="spTime">${st.time}</b> วิ</span>
+      <span>คะแนน <b id="spScore">${st.score}</b></span>
+    </div>
+    <div class="speed-card">
+      <div class="serif" style="font-size:56px; line-height:1.1">${w.hanzi}</div>
+      <div style="font-weight:700">${w.pinyin}</div>
+      <button class="btn small" style="margin-top:8px" onclick="playAudio('${w.hanzi}')">🔊 ฟัง</button>
+    </div>
+    <div class="speed-opts">
+      ${opts.map((o,i)=>`<button class="speed-opt" data-i="${i}" data-correct="${o.hanzi===w.hanzi?'1':'0'}" onclick="speedPick(${i})">${o.th}</button>`).join('')}
+    </div>`));
+}
+function speedPick(i){
+  const st = spState; if(!st || st.busy) return;
+  const btn = document.querySelector('.speed-opt[data-i="'+i+'"]'); if(!btn) return;
+  st.busy = true;
+  if(btn.dataset.correct==='1'){
+    st.score++; const s=document.getElementById('spScore'); if(s) s.textContent=st.score;
+    btn.classList.add('right');
+    setTimeout(speedNext, 350);
+  } else {
+    btn.classList.add('wrong');
+    const r=document.querySelector('.speed-opt[data-correct="1"]'); if(r) r.classList.add('right');
+    setTimeout(speedNext, 900);
+  }
+}
+
 /* ================= INIT ================= */
 renderNav();
 goTo('home');
@@ -1738,6 +2005,42 @@ document.getElementById('dailyPlayAll').addEventListener('click', playDailyAll);
 #fcLayer{position:fixed; inset:0; z-index:90; background:rgba(38,32,25,.6); backdrop-filter:blur(6px);
   -webkit-backdrop-filter:blur(6px); display:none; align-items:center; justify-content:center; padding:18px; overflow:auto}
 #fcLayer.show{display:flex}
+</style>
+<style id="gameStyle">
+#gameLayer{position:fixed; inset:0; z-index:95; background:rgba(38,32,25,.62); backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px); display:none; align-items:flex-start; justify-content:center; padding:14px; overflow:auto}
+#gameLayer.show{display:flex}
+.game-box{background:var(--paper); border:1px solid var(--line); border-radius:16px; box-shadow:0 12px 40px rgba(0,0,0,.28);
+  width:100%; max-width:520px; padding:16px; margin:6px 0 18px}
+.game-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; font-weight:800; font-size:16px}
+.game-win{text-align:center; padding:26px 8px}
+.mem-top{display:flex; justify-content:space-between; font-size:13px; color:var(--muted); margin-bottom:10px; font-weight:700}
+.mem-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:7px}
+.mem-card{position:relative; border:1px solid var(--line); border-radius:10px; background:var(--card); min-height:86px;
+  padding:6px; cursor:pointer; transition:transform .12s; -webkit-tap-highlight-color:transparent}
+.mem-card:active{transform:scale(.95)}
+.mem-back{display:flex; align-items:center; justify-content:center; height:100%; font-size:22px; color:var(--muted)}
+.mem-front{display:none; flex-direction:column; align-items:center; justify-content:center; gap:2px; height:100%;
+  font-size:13px; color:var(--ink); text-align:center; overflow:hidden}
+.mem-front b{font-size:14px; line-height:1.15; max-width:100%; overflow:hidden; text-overflow:ellipsis; word-break:break-word}
+.mem-card[data-kind="zh"] .mem-front b{font-family:var(--serif); font-size:25px}
+.mem-front small{font-size:11px; color:var(--muted)}
+.mem-card.open .mem-back{display:none}
+.mem-card.open .mem-front{display:flex}
+.mem-card.ok{border-color:#2e7d32; background:#e8f5e9}
+.mem-card.ok .mem-front b{color:#2e7d32}
+.tone-top, .speed-top{display:flex; justify-content:space-between; font-size:13px; font-weight:700; color:var(--muted); margin-bottom:10px}
+.tone-card, .speed-card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 12px; text-align:center; margin-bottom:14px}
+.tone-answers{display:grid; gap:8px}
+.tone-btn{width:100%; padding:12px 8px; border-radius:12px; border:1px solid var(--line); background:var(--card);
+  font-size:14.5px; font-weight:700; cursor:pointer; -webkit-tap-highlight-color:transparent}
+.tone-btn.right{background:#e8f5e9; border-color:#2e7d32; color:#2e7d32}
+.tone-btn.wrong{background:#fdecea; border-color:#B0342E; color:#B0342E}
+.speed-opts{display:grid; gap:8px}
+.speed-opt{width:100%; padding:13px 10px; border-radius:12px; border:1px solid var(--line); background:var(--card);
+  font-size:15px; font-weight:600; text-align:left; cursor:pointer; -webkit-tap-highlight-color:transparent}
+.speed-opt.right{background:#e8f5e9; border-color:#2e7d32}
+.speed-opt.wrong{background:#fdecea; border-color:#B0342E}
 </style>
 </body>
 </html>
